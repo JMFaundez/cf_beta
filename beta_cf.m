@@ -47,11 +47,18 @@ cf_fft = fft(cf(1:end-1,:),[],1)/(Nz-1);
 cfL_fft = fft(cfL(1:end-1,:),[],1)/(Nz-1);
 
 
+beta0 = 2*pi/(Z(end,1)-Z(1,1));
+betai = [0:1:15]*beta0;
+
 figure()
 hold on
 for jj=2:10
     yy1 = squeeze(abs(cf_fft(jj,:)));
-    plot(squeeze(X(1,:)),yy1)
+    yname  = "$\beta="+num2str(beta(jj))+"$";
+    plot(squeeze(X(1,:)),yy1,'DisplayName',yname)
 end
+legend("Interpreter","latex")
+xlim([0,0.3])
+xlabel('$x$','Interpreter','latex','FontSize',12)
 
 
