@@ -51,7 +51,7 @@ figure()
 hold on
 for jj=2:10
     yy1 = squeeze(abs(cf_fft(jj,:)));
-    plot(squeeze(X(1,:)),yyl)
+    plot(squeeze(X(1,:)),yy1)
 end
 
 
