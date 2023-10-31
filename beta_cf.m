@@ -73,14 +73,14 @@ for jj=2:10
     plot(squeeze(X(1,:)),yy2,'Color',col(count,:),'DisplayName',yname)
 end
 subplot(211)
-legend("Interpreter","latex")
+legend("Interpreter","latex",'FontSize',14)
 xlim([xmin,xmax])
-xlabel('$x$','Interpreter','latex','FontSize',12)
+xlabel('$x$','Interpreter','latex','FontSize',18)
 title("Linear")
 
 subplot(212)
 xlim([xmin,xmax])
-xlabel('$x$','Interpreter','latex','FontSize',12)
+xlabel('$x$','Interpreter','latex','FontSize',18)
 title("Non-Linear")
 
 
@@ -99,6 +99,7 @@ ylim([min(Z(:)),max(Z(:))])
 xlim([xmin,xmax])
 title('NonLinear')
 ylabel('$z$','FontSize',18,'Interpreter','Latex')
+xlabel('$x$','FontSize',18,'Interpreter','Latex')
 
 
 ax2=subplot(211);
@@ -111,5 +112,4 @@ axis equal
 ylim([min(Z(:)),max(Z(:))])
 xlim([xmin,xmax])
 title('Linear')
-xlabel('$x$','FontSize',18,'Interpreter','Latex')
 ylabel('$z$','FontSize',18,'Interpreter','Latex')
