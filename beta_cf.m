@@ -5,6 +5,7 @@ BF = load("../BF/BF_p_shear.mat");
 mesh = load("../mesh/mesh_cf_XZ");
 X = mesh.Xc;
 Z = mesh.Zc;
+[Nz,Nx] = size(X);
 Re = 5.33e5;
 dt = 2.5e-3;
 timeL = importdata("../../linear_files.dat").data(:,1);
@@ -42,6 +43,15 @@ cfw = (NL.cfw-BF.cfw*1)*1/Re;
 cfwL = (L.cfw)*1/Re;
 
 
-cf_fft = fft(cf,[],2);
+cf_fft = fft(cf(1:end-1,:),[],1)/(Nz-1);
+cfL_fft = fft(cfL(1:end-1,:),[],1)/(Nz-1);
+
+
+figure()
+hold on
+for jj=2:10
+    yy1 = squeeze(abs(cf_fft(jj,:)));
+    plot(squeeze(X(1,:)),yyl)
+end
 
 
