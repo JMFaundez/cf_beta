@@ -1,7 +1,7 @@
 clear all
 addpath /scratch/josfa/Tools/matlab-tools
-BF = load("BF/BF_p_shear.mat");
-mesh = load("mesh/mesh_cf_XZ");
+BF = load("../BF/BF_p_shear.mat");
+mesh = load("../mesh/mesh_cf_XZ");
 X = mesh.Xc;
 Z = mesh.Zc;
 Re = 5.33e5;
