@@ -161,6 +161,7 @@ toc
 cf_avg = mean(cf_fft,3);
 cfL_avg = mean(cfL_fft,3);
 
+col = linspecer(Nb,'sequential');
 
 xmax = 0.3;
 xmin = 0.02;
@@ -174,13 +175,13 @@ for jj=1:Nb
     subplot(211)
     hold on
     yy1 = squeeze(abs(cfL_avg(:,jj)));
-    yname  = "$\beta_{"+num2str(jj-1)+"}$";
+    yname  = "$\beta_{"+num2str(jj)+"}$";
     plot(squeeze(X(1,:)),yy1,'Color',col(count,:),'DisplayName',yname)
     
     subplot(212)
     hold on
     yy2 = squeeze(abs(cf_avg(:,jj)));
-    yname  = "$\beta_{"+num2str(jj-1)+"}$";
+    yname  = "$\beta_{"+num2str(jj)+"}$";
     plot(squeeze(X(1,:)),yy2,'Color',col(count,:),'DisplayName',yname)
 end
 subplot(211)
