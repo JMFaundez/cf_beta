@@ -24,8 +24,6 @@ t = dt*it;
 %itL = find(timeL>=t,1,'first');
 [~,itNL] = min(abs(t-timeNL));
 [~,itL] = min(abs(t-timeL));
-[~,itDL] = min(abs(t-time_diego));
-[~,itDNL] = min(abs(t-time_diegoNL));
 % figure()
 % hold on
 % plot(timeL,'r')
