@@ -54,7 +54,7 @@ figure()
 hold on
 for jj=2:10
     yy1 = squeeze(abs(cf_fft(jj,:)));
-    yname  = "$\beta="+num2str(beta(jj))+"$";
+    yname  = "$\beta_{"+num2str(jj-1)+"}$";
     plot(squeeze(X(1,:)),yy1,'DisplayName',yname)
 end
 legend("Interpreter","latex")
