@@ -113,3 +113,44 @@ ylim([min(Z(:)),max(Z(:))])
 xlim([xmin,xmax])
 title('Linear')
 ylabel('$z$','FontSize',18,'Interpreter','Latex')
+
+
+
+
+
+iti = 0.6/dt;
+Lt = iti:length(timeNL);
+Nb = 10;
+Nt = length(Lt);
+cf_fft = zeros(Nx,Nb,Nt);
+cfL_fft = zeros(Nx,Nb,Nt);
+
+
+
+count = 0;
+for it =Lt
+    count = count+1;
+    t = dt*it;
+
+    [~,itNL] = min(abs(t-timeNL));
+    [~,itL] = min(abs(t-timeL));
+
+    NL = load("../NonLinear/NL_p_shear_it_"+num2str(itNL,'%5.5i'));
+    L = load("../Linear/L_p_shear_it_"+num2str(itL,'%5.5i'));
+
+    cf = (NL.cfu-BF.cfu*1)*1/Re;
+    cfL = (L.cfu)*1/Re;
+
+    cfw = (NL.cfw-BF.cfw*1)*1/Re;
+    cfwL = (L.cfw)*1/Re;
+
+
+    cf_ffti = fft(cf(1:end-1,:),[],1)/(Nz-1);
+    cfL_ffti = fft(cfL(1:end-1,:),[],1)/(Nz-1);
+    for jj=1:Nb
+        cf_fft(:,jj,count) = cf_ffti(jj+1,:);
+        cfL_fft(:,jj,count) = cfL_ffti(jj+1,:);
+    end
+
+end
+
