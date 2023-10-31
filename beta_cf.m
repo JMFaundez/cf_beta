@@ -49,9 +49,14 @@ cfL_fft = fft(cfL(1:end-1,:),[],1)/(Nz-1);
 
 beta0 = 2*pi/(Z(end,1)-Z(1,1));
 betai = [0:1:15]*beta0;
-col = linspecer(9,'qual');
+col = linspecer(9,'sequential');
 
-figure()
+xmax = 0.3;
+xmin = 0.02;
+figw = 1000;
+figh = 400;
+
+figure('Position',[100 100 figw figh])
 count=0;
 for jj=2:10
     count = count+1;
@@ -69,12 +74,12 @@ for jj=2:10
 end
 subplot(211)
 legend("Interpreter","latex")
-xlim([0,0.3])
+xlim([xmin,xmax])
 xlabel('$x$','Interpreter','latex','FontSize',12)
 title("Linear")
 
 subplot(212)
-xlim([0,0.3])
+xlim([xmin,xmax])
 xlabel('$x$','Interpreter','latex','FontSize',12)
 title("Non-Linear")
 
@@ -82,8 +87,8 @@ title("Non-Linear")
 cmap = 'bluewhitered';
 val = 1e-3;
 
-figure('Position',[500 500 1000 400])
-ax1 =subplot(211);
+figure('Position',[600 600 figw figh])
+ax1 =subplot(212);
 pcolor(X,Z,cf)
 shading interp
 clim([-val,val])
@@ -91,12 +96,12 @@ colormap(ax1,cmap)
 colorbar()
 axis equal
 ylim([min(Z(:)),max(Z(:))])
-xlim([0.02,0.5])
+xlim([xmin,xmax])
 title('NonLinear')
 ylabel('$z$','FontSize',18,'Interpreter','Latex')
 
 
-ax2=subplot(212);
+ax2=subplot(211);
 pcolor(X,Z,cfL)
 shading interp
 clim([-val,val])
@@ -104,7 +109,7 @@ colormap(ax2,cmap)
 colorbar()
 axis equal
 ylim([min(Z(:)),max(Z(:))])
-xlim([0.02,0.5])
+xlim([xmin,xmax])
 title('Linear')
 xlabel('$x$','FontSize',18,'Interpreter','Latex')
 ylabel('$z$','FontSize',18,'Interpreter','Latex')
