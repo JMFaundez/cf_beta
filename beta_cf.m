@@ -52,7 +52,7 @@ betai = [0:1:15]*beta0;
 
 figure()
 for jj=2:10
-    subplot(212)
+    subplot(211)
     hold on
     yy1 = squeeze(abs(cfL_fft(jj,:)));
     yname  = "$\beta_{"+num2str(jj-1)+"}$";
@@ -68,11 +68,15 @@ subplot(211)
 legend("Interpreter","latex")
 xlim([0,0.3])
 xlabel('$x$','Interpreter','latex','FontSize',12)
+title("Linear")
 
 subplot(212)
 xlim([0,0.3])
 xlabel('$x$','Interpreter','latex','FontSize',12)
+title("Non-Linear")
 
+
+val = 1e-3;
 
 figure('Position',[500 500 1000 400])
 ax1 =subplot(211);
