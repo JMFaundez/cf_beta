@@ -119,7 +119,7 @@ ylabel('$z$','FontSize',18,'Interpreter','Latex')
 
 
 iti = 0.6/dt;
-Lt = iti:300;
+Lt = iti:1000;
 Nb = 10;
 Nt = length(Lt);
 cf_fft = zeros(Nx,Nb,Nt);
