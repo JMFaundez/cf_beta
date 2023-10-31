@@ -49,20 +49,23 @@ cfL_fft = fft(cfL(1:end-1,:),[],1)/(Nz-1);
 
 beta0 = 2*pi/(Z(end,1)-Z(1,1));
 betai = [0:1:15]*beta0;
+col = linspecer(9,'qual');
 
 figure()
+count=0;
 for jj=2:10
+    count = count+1;
     subplot(211)
     hold on
     yy1 = squeeze(abs(cfL_fft(jj,:)));
     yname  = "$\beta_{"+num2str(jj-1)+"}$";
-    plot(squeeze(X(1,:)),yy1,'DisplayName',yname)
+    plot(squeeze(X(1,:)),yy1,'Color',col(count,:),'DisplayName',yname)
     
     subplot(212)
     hold on
     yy2 = squeeze(abs(cf_fft(jj,:)));
     yname  = "$\beta_{"+num2str(jj-1)+"}$";
-    plot(squeeze(X(1,:)),yy2,'DisplayName',yname)
+    plot(squeeze(X(1,:)),yy2,'Color',col(count,:),'DisplayName',yname)
 end
 subplot(211)
 legend("Interpreter","latex")
@@ -76,6 +79,7 @@ xlabel('$x$','Interpreter','latex','FontSize',12)
 title("Non-Linear")
 
 
+cmap = 'bluewhitered';
 val = 1e-3;
 
 figure('Position',[500 500 1000 400])
