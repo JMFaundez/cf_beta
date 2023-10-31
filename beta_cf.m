@@ -7,8 +7,8 @@ X = mesh.Xc;
 Z = mesh.Zc;
 Re = 5.33e5;
 dt = 2.5e-3;
-timeL = importdata("../linear_files.dat").data(:,1);
-timeNL = importdata("../nonlinear_files.dat").data(:,1);
+timeL = importdata("../../linear_files.dat").data(:,1);
+timeNL = importdata("../../nonlinear_files.dat").data(:,1);
 
 figure()
 hold on
@@ -34,8 +34,8 @@ t = dt*it;
 % plot(itNL,timeNL(itNL),'bo')
 
 
-NL = load("NonLinear/NL_p_shear_it_"+num2str(itNL,'%5.5i'));
-L = load("Linear/L_p_shear_it_"+num2str(itL,'%5.5i'));
+NL = load("../NonLinear/NL_p_shear_it_"+num2str(itNL,'%5.5i'));
+L = load("../Linear/L_p_shear_it_"+num2str(itL,'%5.5i'));
 
 cf = (NL.cfu-BF.cfu*1)*1/Re;
 cfL = (L.cfu)*1/Re;
