@@ -119,14 +119,14 @@ ylabel('$z$','FontSize',18,'Interpreter','Latex')
 
 
 iti = 0.6/dt;
-Lt = iti:length(timeNL);
+Lt = iti:300;
 Nb = 10;
 Nt = length(Lt);
 cf_fft = zeros(Nx,Nb,Nt);
 cfL_fft = zeros(Nx,Nb,Nt);
 
 
-
+tic
 count = 0;
 for it =Lt
     count = count+1;
@@ -147,10 +147,49 @@ for it =Lt
 
     cf_ffti = fft(cf(1:end-1,:),[],1)/(Nz-1);
     cfL_ffti = fft(cfL(1:end-1,:),[],1)/(Nz-1);
-    for jj=1:Nb
-        cf_fft(:,jj,count) = cf_ffti(jj+1,:);
-        cfL_fft(:,jj,count) = cfL_ffti(jj+1,:);
-    end
+    cf_fft(:,:,count) = abs(cf_ffti(2:Nb+1,:))';
+    cfL_fft(:,:,count) = abs(cfL_ffti(2:Nb+1,:))';
+%    for jj=1:Nb
+%        cf_fft(:,jj,count) = cf_ffti(jj+1,:);
+%        cfL_fft(:,jj,count) = cfL_ffti(jj+1,:);
+%    end
 
 end
+toc
 
+
+cf_avg = mean(cf_fft,3);
+cfL_avg = mean(cfL_fft,3);
+
+
+xmax = 0.3;
+xmin = 0.02;
+figw = 1000;
+figh = 400;
+
+figure('Position',[100 100 figw figh])
+count=0;
+for jj=1:Nb
+    count = count+1;
+    subplot(211)
+    hold on
+    yy1 = squeeze(abs(cfL_avg(:,jj)));
+    yname  = "$\beta_{"+num2str(jj-1)+"}$";
+    plot(squeeze(X(1,:)),yy1,'Color',col(count,:),'DisplayName',yname)
+    
+    subplot(212)
+    hold on
+    yy2 = squeeze(abs(cf_avg(:,jj)));
+    yname  = "$\beta_{"+num2str(jj-1)+"}$";
+    plot(squeeze(X(1,:)),yy2,'Color',col(count,:),'DisplayName',yname)
+end
+subplot(211)
+legend("Interpreter","latex",'FontSize',14)
+xlim([xmin,xmax])
+xlabel('$x$','Interpreter','latex','FontSize',18)
+title("Linear")
+
+subplot(212)
+xlim([xmin,xmax])
+xlabel('$x$','Interpreter','latex','FontSize',18)
+title("Non-Linear")
