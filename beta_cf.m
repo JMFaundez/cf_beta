@@ -163,7 +163,7 @@ cfL_avg = mean(cfL_fft,3,'omitnan');
 
 col = linspecer(Nb,'sequential');
 
-xmax = 0.3;
+xmax = 0.2;
 xmin = 0.02;
 figw = 1000;
 figh = 400;
@@ -188,9 +188,34 @@ subplot(211)
 legend("Interpreter","latex",'FontSize',14)
 xlim([xmin,xmax])
 xlabel('$x$','Interpreter','latex','FontSize',18)
+ylabel('$c_f(\beta)$','Interpreter','latex','FontSize',18)
 title("Linear")
+box on
 
 subplot(212)
 xlim([xmin,xmax])
 xlabel('$x$','Interpreter','latex','FontSize',18)
+ylabel('$c_f(\beta)$','Interpreter','latex','FontSize',18)
 title("Non-Linear")
+box on
+
+
+figure('Position',[100 100 1000 800])
+count=0;
+for jj=1:Nb
+    count = count+1;
+    subplot(2,Nb/5,count)
+    hold on
+    yy1 = squeeze(abs(cfL_avg(:,jj)));
+    yy2 = squeeze(abs(cf_avg(:,jj)));
+    yname  = "$\beta_{"+num2str(jj)+"}$";
+    plot(squeeze(X(1,:)),yy1,'k-')
+    plot(squeeze(X(1,:)),yy2,'r--')
+    xlim([xmin,xmax])
+    xlabel('$x$','Interpreter','latex','FontSize',18)
+    ylabel('$c_f(\beta)$','Interpreter','latex','FontSize',18)
+    title(yname)
+    box on
+    
+end
+
