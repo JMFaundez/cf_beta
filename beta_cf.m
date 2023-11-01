@@ -169,6 +169,7 @@ ymin = 0;
 ymax = 8e-5;
 figw = 1000;
 figh = 400;
+lw = 1.2;
 
 figure('Position',[100 100 figw figh])
 count=0;
@@ -178,13 +179,13 @@ for jj=1:Nb
     hold on
     yy1 = squeeze(abs(cfL_avg(:,jj)));
     yname  = "$\beta_{"+num2str(jj)+"}$";
-    plot(squeeze(X(1,:)),yy1,'Color',col(count,:),'DisplayName',yname)
+    plot(squeeze(X(1,:)),yy1,'Color',col(count,:),'LineWidth',lw,'DisplayName',yname)
     
     subplot(212)
     hold on
     yy2 = squeeze(abs(cf_avg(:,jj)));
     yname  = "$\beta_{"+num2str(jj)+"}$";
-    plot(squeeze(X(1,:)),yy2,'Color',col(count,:),'DisplayName',yname)
+    plot(squeeze(X(1,:)),yy2,'Color',col(count,:),'LineWidth',lw,'DisplayName',yname)
 end
 subplot(211)
 legend("Interpreter","latex",'FontSize',14)
@@ -213,8 +214,8 @@ for jj=1:Nb
     yy1 = squeeze(abs(cfL_avg(:,jj)));
     yy2 = squeeze(abs(cf_avg(:,jj)));
     yname  = "$\beta_{"+num2str(jj)+"}$";
-    plot(squeeze(X(1,:)),yy1,'k-')
-    plot(squeeze(X(1,:)),yy2,'r--')
+    plot(squeeze(X(1,:)),yy1,'k-','LineWidth',lw)
+    plot(squeeze(X(1,:)),yy2,'r--','LineWidth',lw)
     xlim([xmin,xmax])
     ylim([ymin,ymax])
     xlabel('$x$','Interpreter','latex','FontSize',18)
