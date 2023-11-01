@@ -200,11 +200,11 @@ title("Non-Linear")
 box on
 
 
-figure('Position',[100 100 1000 800])
+figure('Position',[100 100 1600 800])
 count=0;
 for jj=1:Nb
     count = count+1;
-    subplot(2,Nb/5,count)
+    subplot(2,Nb/2,count)
     hold on
     yy1 = squeeze(abs(cfL_avg(:,jj)));
     yy2 = squeeze(abs(cf_avg(:,jj)));
