@@ -165,6 +165,8 @@ col = linspecer(Nb,'sequential');
 
 xmax = 0.2;
 xmin = 0.02;
+ymin = 0;
+ymax = 8e-3;
 figw = 1000;
 figh = 400;
 
@@ -187,6 +189,7 @@ end
 subplot(211)
 legend("Interpreter","latex",'FontSize',14)
 xlim([xmin,xmax])
+ylim([ymin,ymax])
 xlabel('$x$','Interpreter','latex','FontSize',18)
 ylabel('$c_f(\beta)$','Interpreter','latex','FontSize',18)
 title("Linear")
@@ -194,6 +197,7 @@ box on
 
 subplot(212)
 xlim([xmin,xmax])
+ylim([ymin,ymax])
 xlabel('$x$','Interpreter','latex','FontSize',18)
 ylabel('$c_f(\beta)$','Interpreter','latex','FontSize',18)
 title("Non-Linear")
@@ -212,9 +216,10 @@ for jj=1:Nb
     plot(squeeze(X(1,:)),yy1,'k-')
     plot(squeeze(X(1,:)),yy2,'r--')
     xlim([xmin,xmax])
+    ylim([ymin,ymax])
     xlabel('$x$','Interpreter','latex','FontSize',18)
     ylabel('$c_f(\beta)$','Interpreter','latex','FontSize',18)
-    title(yname)
+    title(yname,'Interpreter','latex','FontSize',16)
     box on
     
 end
