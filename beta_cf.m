@@ -166,7 +166,7 @@ col = linspecer(Nb,'sequential');
 xmax = 0.2;
 xmin = 0.02;
 ymin = 0;
-ymax = 8e-4;
+ymax = 1e-4;
 figw = 1000;
 figh = 400;
 
