@@ -119,7 +119,7 @@ ylabel('$z$','FontSize',18,'Interpreter','Latex')
 
 
 iti = 0.6/dt;
-Lt = iti:1000;
+Lt = iti:2450;
 Nb = 10;
 Nt = length(Lt);
 cf_fft = zeros(Nx,Nb,Nt);
@@ -158,8 +158,8 @@ end
 toc
 
 
-cf_avg = mean(cf_fft,3);
-cfL_avg = mean(cfL_fft,3);
+cf_avg = mean(cf_fft,3,'omitnan');
+cfL_avg = mean(cfL_fft,3,'omitnan');
 
 col = linspecer(Nb,'sequential');
 
